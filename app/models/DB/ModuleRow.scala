@@ -53,7 +53,7 @@ case class ModuleRow(
   }
 
   def generateController(): Unit = {
-    val path = this.getPath("app/controllers/","Controller.scala")
+    val path = this.getPath("app/controllers/","Crud.scala")
     FileUtils.writeToFile(path,views.html.module.template.controller(this.module,this.renderFields,this.relatedFields).toString)
   }
 
@@ -63,7 +63,7 @@ case class ModuleRow(
   }
 
   def generateRow(): Unit = {
-    val path = this.getPath("app/models/DB/","Row.scala")
+    val path = this.getPath("app/models/DB/",".scala")
     FileUtils.writeToFile(path,views.html.module.template.row(this.module,this.renderFields).toString)
   }
 
