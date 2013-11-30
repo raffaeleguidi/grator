@@ -1,8 +1,8 @@
 package models.fields
 
-import models.DB.FieldRow
+import models.CrudModule
 
-class IdField(val field: FieldRow) extends Field{
+class IdField(module: CrudModule) extends Field{
 	def controllerForm: String = {
 		"\"id\" -> optional(longNumber)"
 	}
@@ -25,8 +25,8 @@ class IdField(val field: FieldRow) extends Field{
 	}
 
 	override def list: String = {
-		val moduleName = field.module.name
-		val controllerName = moduleName.capitalize+"Controller"
+		val moduleName = module.name
+		val controllerName = module.controllerName
 		s"""<a href="@controllers.routes.$controllerName.detail(row.id.get)">@row.id</a>"""
 	}
 

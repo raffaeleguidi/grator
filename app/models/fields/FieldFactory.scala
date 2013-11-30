@@ -1,11 +1,12 @@
 package models.fields
 
-import models.DB.FieldRow
+import models.fields._
+import models._
 
 case class customException(smth:String)  extends Exception
 
 object FieldFactory{
-	def get(field: FieldRow): Field = {
+	def get(field: Field): Field = {
 		field.fieldType match{
 			case "Id" 		=> new IdField(field)
 			case "Name" 	=> new NameField(field)
