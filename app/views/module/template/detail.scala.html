@@ -1,4 +1,4 @@
-@(module: models.Module)
+@(module: models.CrudModule)
 @@(@{module.varName}: models.DB.@{module.rowName})(implicit lang: Lang)
 
 @@main(Messages("@{module.name}.name")){

@@ -1,4 +1,4 @@
-@(module: models.Module, fields: List[models.fields.Field])
+@(module: models.CrudModule, fields: List[models.fields.Field])
 @@(rowForm: Form[models.DB.@{module.rowName}], route: play.api.mvc.Call, row: Option[models.DB.@{module.rowName}] = None)(implicit lang: Lang)
 
 @@import helper._

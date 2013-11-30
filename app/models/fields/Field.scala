@@ -1,16 +1,17 @@
 package models.fields
 import models.FieldUtils
-import models.DB.FieldRow
 
-trait Field{
-	def field: FieldRow
+trait Field {
+	//def field: FieldRow
 	def controllerForm: String
 
-	lazy val name: String = FieldUtils.underscoreToCamel(this.field.name)
-
+	val name: String // = lazy FieldUtils.underscoreToCamel(this.field.name)
+	val required: Boolean
+    val moduleName: String
+    
 	def htmlForm: String = {
-		val moduleName = field.module.name
-		val name = field.name
+		//val moduleName = module.name
+		//val name = name
 		s"""<legend>
 				@Messages("$moduleName.$name")
 		   </legend>
@@ -20,10 +21,10 @@ trait Field{
 	def fieldTable: String
 
 	def nameInTable: String = {
-		if(this.field.required){
-			field.name	
+		if(required){
+			name	
 		} else {
-			field.name+".?"
+			name+".?"
 		}
 		
 	}
@@ -38,7 +39,7 @@ trait Field{
 	def classDefinition: String = {
 		val name = this.name
 		val fieldType = this.fieldType
-		if(this.field.required){
+		if(required){
 			s"""$name: $fieldType"""
 		} else {
 			s"""$name: Option[$fieldType]"""

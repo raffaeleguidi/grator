@@ -1,6 +1,21 @@
+
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
 # Home page
-GET   /                             controllers.Application.index
-GET   /generate                     controllers.Application.generate
+GET     /                    controllers.Application.index
+
+
+
+#test:
+GET   /test                controllers.TestController.index
+GET   /test/:id/detail     controllers.TestController.detail(id: Long)
+GET   /test/insert         controllers.TestController.insert
+GET   /test/:id/edit       controllers.TestController.edit(id: Long)
+POST  /test/save           controllers.TestController.save
+POST  /test/:id/delete     controllers.TestController.delete(id: Long)
+POST  /test/:id/update     controllers.TestController.update(id: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path

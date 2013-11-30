@@ -1,11 +1,11 @@
 package models.fields
 
-import models.DB.FieldRow
+//import models.DB.FieldRow
 
-class RelatedField(val field: FieldRow) extends Field{
+class RelatedField(val name: String, val moduleName: String, val required: Boolean) extends Field {
 	def controllerForm: String = {
-		val name = field.name
-		val fieldType = if(field.required){
+		//val name = field.name
+		val fieldType = if(required){
 			"longNumber"
 		} else {
 			"optional(longNumber)"
@@ -23,11 +23,11 @@ class RelatedField(val field: FieldRow) extends Field{
 	*/
 
 	override def htmlForm: String = {
-		val moduleName = field.module.name
-		val relatedModuleRow = field.relatedModule.get
-		val relatedModule = relatedModuleRow.module
-		val relatedRowName = relatedModule.rowName
-		val name = field.name
+		//val moduleName = moduleName
+		val relatedModuleRow = "relatedModule.get"
+		//val relatedModule = relatedModuleRow.module
+		val relatedRowName = name
+		//val name = field.name
 		s"""<legend>
 				@Messages("$moduleName.$name")
 		   </legend>
@@ -39,18 +39,18 @@ class RelatedField(val field: FieldRow) extends Field{
 	}
 
 	def fieldTable: String = {
-		val name = field.name
-		val fieldType = this.fieldType
-		val required = if(field.required){", O.NotNull"} else {""}
+		//val name = field.name
+		//val fieldType = this.fieldType
+		//val required = if(required){", O.NotNull"} else {""}
 		s"""def $name = column[$fieldType]("$name"$required)"""
 	}
 	
 	def fieldType: String = "Long"
 
 	def tableIndex: String = {
-		val name = field.name
-		val relatedName = field.relatedModule.get.name
-		val keyName = field.module.name+"_"+relatedName+"_"+name
+		//val name = field.name
+		val relatedName = "relatedModule.get.name"
+		val keyName = moduleName+"_"+relatedName+"_"+name
 		val relatedTable = relatedName.capitalize+"Table"
 		val varName = if(this.name == name){name+"Id"}else{this.name}
 		s"""def $varName = foreignKey("$keyName", $name, $relatedTable)(_.id)"""

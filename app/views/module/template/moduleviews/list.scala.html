@@ -1,10 +1,10 @@
-@(module: models.Module, fields: List[models.fields.Field])
+@(module: models.CrudModule, fields: List[models.fields.Field])
 @@(rows: List[models.DB.@{module.rowName}])(implicit lang: Lang)
 
 <table class="table table-bordered table-striped table-hover">
     <thead>
       <tr>@for(field <- fields){
-        <th>@@Messages("@{module.name}.@{field.field.name}")</th>}
+        <th>@@Messages("@{module.name}.@{field.name}")</th>}
       </tr>
     </thead>
     <tbody>

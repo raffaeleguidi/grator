@@ -1,4 +1,4 @@
-@(module: models.Module)
+@(module: models.CrudModule)
 @@(@{module.formName}: Form[models.DB.@{module.rowName}], @{module.varName}: models.DB.@{module.rowName})(implicit lang: Lang)
 
 @@main(Messages("@{module.name}.insert")){

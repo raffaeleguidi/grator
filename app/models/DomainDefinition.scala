@@ -10,9 +10,8 @@ object DomainDefinition {
 	val modules = List(
 	  				CrudModule("test", 
 	  				    List(
-	  				        models.fields.IdField(),
-	  				        TextField("name"),
-	  				        TextField("foreign_id")
+	  				        TextField("name", "test", false),
+	  				        TextField("foreign_id", "test", false)
 	  				    )
 	  				)
 		  		)
@@ -65,9 +64,9 @@ case class CrudModule (name: String, fields: List[Field]){
   lazy val relatedFields: List[RelatedField] = for{
     field <- this.fields
     if(field.fieldType == "Related")
-  }  yield(new RelatedField(field))
+  }  yield(new RelatedField(field.name, name, false))
 	
-  lazy val renderFields = for (field <- fields) yield (FieldFactory.get(field))
+  lazy val renderFields = for (field <- fields) yield (field)
   
   def getPath(folder: String, fileTermination: String): String = {
     val basePath = "./"
@@ -75,6 +74,12 @@ case class CrudModule (name: String, fields: List[Field]){
     val path = basePath+folder+name.capitalize+fileTermination
     Logger.debug(path)
     path
+  }
+  
+  def getViewPath(viewName: String): String = {
+    val basePath = "./"
+
+    basePath+"app/views/"+this.name+"/"+viewName+".scala.html"
   }
 
   def generateController(): Unit = {
@@ -84,42 +89,42 @@ case class CrudModule (name: String, fields: List[Field]){
 
   def generateTable(): Unit = {
     val path = this.getPath("app/models/DB/","Table.scala")
-    FileUtils.writeToFile(path,views.html.module.template.table(this.module,this.renderFields, this.relatedFields).toString)
+    FileUtils.writeToFile(path,views.html.module.template.table(this,this.renderFields, this.relatedFields).toString)
   }
 
   def generateRow(): Unit = {
     val path = this.getPath("app/models/DB/",".scala")
-    FileUtils.writeToFile(path,views.html.module.template.row(this.module,this.renderFields).toString)
+    FileUtils.writeToFile(path,views.html.module.template.row(this,this.renderFields).toString)
   }
 
   def generateDetailView(): Unit = {
     val path = this.getViewPath("detail")
-    FileUtils.writeToFile(path,views.html.module.template.moduleviews.detail(this.module).toString)
+    FileUtils.writeToFile(path,views.html.module.template.moduleviews.detail(this).toString)
   }
 
   def generateEditView(): Unit = {
     val path = this.getViewPath("edit")
-    FileUtils.writeToFile(path,views.html.module.template.moduleviews.edit(this.module).toString)
+    FileUtils.writeToFile(path,views.html.module.template.moduleviews.edit(this).toString)
   }
 
   def generateFormView(): Unit = {
     val path = this.getViewPath("form")
-    FileUtils.writeToFile(path,views.html.module.template.moduleviews.form(this.module,this.renderFields).toString)
+    FileUtils.writeToFile(path,views.html.module.template.moduleviews.form(this,this.renderFields).toString)
   }
 
   def generateIndexView(): Unit = {
     val path = this.getViewPath("index")
-    FileUtils.writeToFile(path,views.html.module.template.moduleviews.index(this.module).toString)
+    FileUtils.writeToFile(path,views.html.module.template.moduleviews.index(this).toString)
   }
 
   def generateInsertView(): Unit = {
     val path = this.getViewPath("insert")
-    FileUtils.writeToFile(path,views.html.module.template.moduleviews.insert(this.module).toString)
+    FileUtils.writeToFile(path,views.html.module.template.moduleviews.insert(this).toString)
   }
 
   def generateListView(): Unit = {
     val path = this.getViewPath("list")
-    FileUtils.writeToFile(path,views.html.module.template.moduleviews.list(this.module,this.renderFields).toString)
+    FileUtils.writeToFile(path,views.html.module.template.moduleviews.list(this,this.renderFields).toString)
   }
 
   def generateViews(): Unit = {

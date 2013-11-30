@@ -1,5 +1,5 @@
-@(title: String)(content: Html)
 
+@(title: String)(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -14,15 +14,16 @@
 	     <div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-          <a class="brand" href="@routes.ApplicationController.index()">
-            @Messages("application.module_name")
+          <a class="brand" href="@routes.Application.index()">
+            @Messages("application.name")
           </a>
-          <a class="brand" href="@routes.ModuleController.index()">
-            @Messages("module.module_name")
+
+          
+          <a class="brand" href="@routes.TestController.index()">
+            @Messages("test.module_name")
           </a>
-          <a class="brand" href="@routes.FieldController.index()">
-            @Messages("field.module_name")
-          </a>
+           
+
         </div>
 			</div>
 		</div>
