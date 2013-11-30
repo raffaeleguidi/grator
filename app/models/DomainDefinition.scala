@@ -23,7 +23,7 @@ object DomainDefinition {
 
     this.generateRoutes(modules)
     this.generateMessages(modules)
-    this.generateMenu(modules)
+    //this.generateMenu(modules)
   }
 
   def generateMessages(modules: List[CrudModule]): Unit = {
