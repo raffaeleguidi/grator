@@ -7,12 +7,7 @@ import models.DomainDefinition
 object Application extends Controller {
 
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
-  }
-  
-  def generate = Action {
     DomainDefinition.generateAll
-    Ok("a posto")
+    Ok("crud generated")
   }
-
 }
