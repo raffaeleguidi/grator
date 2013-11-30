@@ -2,7 +2,9 @@ package models.fields
 
 //import models.CrudModule
 
-case class IdField(val name: String, val moduleName: String, val required: Boolean) extends Field{
+case class IdField(val name: String, val moduleName: String) extends Field {
+	val required: Boolean = true
+	
 	def controllerForm: String = {
 		"\"id\" -> optional(longNumber)"
 	}

@@ -1,4 +1,5 @@
 @(modules: List[models.CrudModule])
+
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
@@ -14,12 +15,12 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 @for(module <- modules){
 
 #@{module.name}:
-GET   /@{module.name}                controllers.@{module.name.capitalize}Controller.index
-GET   /@{module.name}/:id/detail     controllers.@{module.name.capitalize}Controller.detail(id: Long)
-GET   /@{module.name}/insert         controllers.@{module.name.capitalize}Controller.insert
-GET   /@{module.name}/:id/edit       controllers.@{module.name.capitalize}Controller.edit(id: Long)
-POST  /@{module.name}/save           controllers.@{module.name.capitalize}Controller.save
-POST  /@{module.name}/:id/delete     controllers.@{module.name.capitalize}Controller.delete(id: Long)
-POST  /@{module.name}/:id/update     controllers.@{module.name.capitalize}Controller.update(id: Long)
+GET   /@{module.name}                controllers.@{module.controllerName}.index
+GET   /@{module.name}/:id/detail     controllers.@{module.controllerName}.detail(id: Long)
+GET   /@{module.name}/insert         controllers.@{module.controllerName}.insert
+GET   /@{module.name}/:id/edit       controllers.@{module.controllerName}.edit(id: Long)
+POST  /@{module.name}/save           controllers.@{module.controllerName}.save
+POST  /@{module.name}/:id/delete     controllers.@{module.controllerName}.delete(id: Long)
+POST  /@{module.name}/:id/update     controllers.@{module.controllerName}.update(id: Long)
 }
 

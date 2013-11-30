@@ -1,0 +1,16 @@
+
+@(TestForm: Form[models.DB.Test], test: models.DB.Test)(implicit lang: Lang)
+
+@main(Messages("test.insert")){
+  <div class="page-header">
+      <h1>@Messages("test.insert")</h1>
+  </div>
+  
+  @views.html.test.form(TestForm, route = routes.TestCrud.update(test.id.get), row = Some(test))
+
+  <p>
+    <a href="@controllers.routes.TestCrud.index()"
+    class="btn">
+    <i class="icon-plus"></i> @Messages("test.return")</a>
+  </p>
+}

@@ -1,0 +1,16 @@
+
+@(rows: List[models.DB.Test])(implicit lang: Lang)
+
+@main(Messages("test.name")){
+	<div class="page-header">
+    	<h1>@Messages("test.module_name")</h1>
+  </div>
+	
+  @views.html.test.list(rows)
+
+ 	<p>
+		<a href="@controllers.routes.TestCrud.insert()"
+		class="btn">
+		<i class="icon-plus"></i> @Messages("test.new")</a>
+	</p>
+}

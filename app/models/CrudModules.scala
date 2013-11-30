@@ -6,23 +6,14 @@ import utils.FileUtils
 import models.fields._
 
 
-object DomainDefinition {
-	val modules = List(
-	  				CrudModule("test", 
-	  				    List(
-	  				        TextField("name", "test", false),
-	  				        TextField("foreign_id", "test", false)
-	  				    )
-	  				)
-		  		)
-		  		
-  def generateAll(): Unit = {
+object CrudModules {
+  def generate(modules: List[CrudModule]): Unit = {
     for(module <- modules){
       module.generateAll
     }
 
-    this.generateRoutes(modules)
-    this.generateMessages(modules)
+    CrudModules.this.generateRoutes(modules)
+    CrudModules.this.generateMessages(modules)
     //this.generateMenu(modules)
   }
 
@@ -35,7 +26,7 @@ object DomainDefinition {
 
   def generateRoutes(modules: List[CrudModule]): Unit = {
     val path = "conf/routes"
-    FileUtils.writeToFile(path,views.html.application.template.routes(modules).toString)
+    FileUtils.appendToFile(path,views.html.application.template.routes(modules).toString)
   }
 
   def generateMenu(modules: List[CrudModule]): Unit = {
@@ -50,9 +41,10 @@ case class CrudModule (name: String, fields: List[Field]){
 	val upName = varName.capitalize
 	val controllerName = upName + "Crud"
 	val rowName = upName
-	val tableName = upName+"Table"
 	val formName = upName+"Form"
 	val pluralName = varName+"s" //TODO add plural name field to module and update this method
+	//val tableName = upName+"Table"
+	val tableName = pluralName
 	
   def generateAll(): Unit = {
     this.generateController()
@@ -136,7 +128,4 @@ case class CrudModule (name: String, fields: List[Field]){
     this.generateListView()
   }
 }
-
-//case class Field (name: String,typeOf: String) 
-
 

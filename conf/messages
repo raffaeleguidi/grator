@@ -17,6 +17,8 @@ test.index = Test List
 test.item_detail = {0} Test details
 
 
+	test.id = Id
+
 	test.name = Name
 
 	test.foreign_id = Foreign_id

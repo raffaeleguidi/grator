@@ -10,8 +10,8 @@ case class TextField(val name: String, val moduleName: String, val required: Boo
 
 	def fieldTable: String = {
 		//val name = field.name
-		//val required = if(required){", O.NotNull"} else {""}
-		s"""def $name = column[String]("$name"$required)"""
+		val requiredClause = if(required){", O.NotNull"} else {""}
+		s"""def $name = column[String]("$name"$requiredClause)"""
 	}
 
 	def fieldType: String = "String"

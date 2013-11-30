@@ -2,7 +2,8 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import models.DomainDefinition
+import models._
+import models.fields._
 
 object Application extends Controller {
 
@@ -11,7 +12,17 @@ object Application extends Controller {
   }
   
   def generate = Action {
-    DomainDefinition.generateAll
+    CrudModules.generate(
+        List(
+  				CrudModule("test", 
+  				    List(
+  				        IdField("id", "test"),
+  				        TextField("name", "test", false),
+  				        TextField("foreign_id", "test", false)
+  				    )
+  				)
+	  		)
+    )
     Ok("crud generated")
   }
 }

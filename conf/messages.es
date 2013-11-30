@@ -17,5 +17,6 @@ test.index = Listado de Test
 test.item_detail = Detalles de {0} Test
 
 
+test.id = Id
 test.name = Name
 test.foreign_id = Foreign_id

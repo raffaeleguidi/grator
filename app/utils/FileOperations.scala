@@ -4,21 +4,30 @@ import java.io.File
 
 object FileOperations{
   def createPath(path: String){
-    val carpeta = new java.io.File(path)
+    val folder = new java.io.File(path)
     try{
-      if(!carpeta.exists){
-        carpeta.getParentFile().mkdirs();
+      if(!folder.exists){
+        folder.getParentFile().mkdirs();
       }
     }
 }
 
-def writeToFile(path: String, file: String) {
-    this.createPath(path)
-    val archivo = new java.io.PrintWriter(new File(path))
+def writeToFile(path: String, fileName: String) {
+    createPath(path)
+    val file = new java.io.PrintWriter(new File(path))
     try {
-      archivo.write(file)
+      file.write(fileName)
     } finally {
-      archivo.close()
+      file.close()
+    }
+  }
+def appendToFile(path: String, fileName: String) {
+    createPath(path)
+    val file = new java.io.PrintWriter(new File(path))
+    try {
+      file.append(fileName)
+    } finally {
+      file.close()
     }
   }
 }

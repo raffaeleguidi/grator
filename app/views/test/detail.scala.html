@@ -1,0 +1,16 @@
+
+@(test: models.DB.Test)(implicit lang: Lang)
+
+@main(Messages("test.name")){
+	<div class="page-header">
+    	<h1>@Messages("test.item_detail",test.name)</h1>
+  </div>
+	
+  @views.html.test.list(List(test))
+
+ 	<p>
+		<a href="@controllers.routes.TestCrud.index()"
+		class="btn">
+		<i class="icon-plus"></i> @Messages("test.index")</a>
+	</p>
+}
