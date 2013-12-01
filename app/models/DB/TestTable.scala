@@ -7,7 +7,7 @@ import play.api.db.slick.DB
 import play.api.db.slick.Config.driver.simple._
 import slick.lifted.{Join, MappedTypeMapper}
 
-object tests extends Table[Test]("test"){
+object Tests extends Table[Test]("test"){
   
 
 

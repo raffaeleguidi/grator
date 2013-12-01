@@ -44,7 +44,7 @@ case class CrudModule (name: String, fields: List[Field]){
 	val formName = upName+"Form"
 	val pluralName = varName+"s" //TODO add plural name field to module and update this method
 	//val tableName = upName+"Table"
-	val tableName = pluralName
+	val tableName = pluralName.capitalize
 	
   def generateAll(): Unit = {
     this.generateController()

@@ -23,14 +23,14 @@ case class Test(
 object Test{
   def save(test: Test):Long = {
     DB.withTransaction { implicit session =>
-      tests.returning(tests.id).insert(test)
+      Tests.returning(Tests.id).insert(test)
     }
   }
   
   def update(test: Test):Int = {
     DB.withTransaction { implicit session =>
       val q = for {
-        s <- tests
+        s <- Tests
         if s.id === test.id
       } yield(s)
       q.update(test)
@@ -40,7 +40,7 @@ object Test{
   def delete(test: Test):Int = {
     DB.withTransaction { implicit session =>
        val q = for {
-        s <- tests
+        s <- Tests
         if s.id === test.id.get
       } yield(s)
       (new DeleteInvoker(q)).delete
@@ -50,27 +50,26 @@ object Test{
   
   def findAll: List[Test] = {
     DB.withSession { implicit session =>
-      Query(tests).list
+      Query(Tests).list
     }
   }
   
   def findById(id: Long):Option[Test] = {
     DB.withSession { implicit session =>
       val q = for{
-        s <- tests if s.id === id
+        s <- Tests if s.id === id
       } yield (s)
       q.firstOption
     }
   }
 
-  /* gotta look into it
-  def getOptions(): Seq[(String,String)] = {
+  /* gotta look into it Seq[(String,String)] */
+  def getOptions():  List[(String,Option[String])] = {
     DB.withSession { implicit session =>
       val tests = for {
-        p <- tests
+        p <- Tests
       } yield(p)
       for(test <- tests.list) yield(test.id.get.toString,test.name) 
     }
   }
-  */
 }

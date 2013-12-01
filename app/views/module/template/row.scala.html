@@ -59,8 +59,8 @@ object @{module.rowName}{
     }
   }
 
-  /* gotta look into it
-  def getOptions(): Seq[(String,String)] = {
+  /* gotta look into it Seq[(String,String)] */
+  def getOptions():  List[(String,Option[String])] = {
     DB.withSession { implicit session =>
       val @{module.pluralName} = for {
         p <- @{module.tableName}
@@ -68,5 +68,4 @@ object @{module.rowName}{
       for(@{module.varName} <- @{module.pluralName}.list) yield(@{module.varName}.id.get.toString,@{module.varName}.name) 
     }
   }
-  */
 }
