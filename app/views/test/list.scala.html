@@ -14,12 +14,18 @@
           <tr>
             <td>
               
+                <a href="@controllers.routes.TestCrud.detail(row.id.get)">[ @row.id ]</a>
+              
             </td>
             <td>
-              @row.name
+              
+                @row.name
+              
             </td>
             <td>
-              @row.foreign_id
+              
+                @row.foreign_id
+              
             </td>
         </tr>
     }

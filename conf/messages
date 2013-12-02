@@ -1,5 +1,5 @@
 
-application.name = Crud
+application.name = GRATOR Crud Generator
 
 
 

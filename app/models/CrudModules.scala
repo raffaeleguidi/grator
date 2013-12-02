@@ -7,21 +7,21 @@ import models.fields._
 
 
 object CrudModules {
-  def generate(modules: List[CrudModule]): Unit = {
+  def generate(appName: String, modules: List[CrudModule]): Unit = {
     for(module <- modules){
       module.generateAll
     }
 
     CrudModules.this.generateRoutes(modules)
-    CrudModules.this.generateMessages(modules)
+    CrudModules.this.generateMessages(modules, appName)
     //this.generateMenu(modules)
   }
 
-  def generateMessages(modules: List[CrudModule]): Unit = {
+  def generateMessages(modules: List[CrudModule], appName: String): Unit = {
     val path = "conf/messages"
 
-    FileUtils.writeToFile(path,views.html.application.template.messages("Crud", modules).toString)
-    FileUtils.writeToFile(path+".es",views.html.application.template.messages_es("Crud", modules).toString)
+    FileUtils.writeToFile(path,views.html.application.template.messages(appName, modules).toString)
+    FileUtils.writeToFile(path+".es",views.html.application.template.messages_es(appName, modules).toString)
   }
 
   def generateRoutes(modules: List[CrudModule]): Unit = {

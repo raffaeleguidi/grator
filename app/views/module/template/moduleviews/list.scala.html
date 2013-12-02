@@ -11,7 +11,11 @@
     @@for(row <- rows){
           <tr>@for(field <- fields){
             <td>
-              @Html(field.list)
+              @if(field.name == "id") {
+                <a href="@@controllers.routes.@{module.controllerName}.detail(row.id.get)">[ @@row.id ]</a>
+              } else {
+                @Html(field.list)
+              }
             </td>}
         </tr>
     }
