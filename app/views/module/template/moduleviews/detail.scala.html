@@ -1,9 +1,9 @@
 @(module: models.CrudModule)
 @@(@{module.varName}: models.DB.@{module.rowName})(implicit lang: Lang)
 
-@@main(Messages("@{module.name}.name")){
+@@main(Messages("@{module.name}.item_detail",@{module.varName}.name.get)){
 	<div class="page-header">
-    	<h1>@@Messages("@{module.name}.item_detail",@{module.varName}.name)</h1>
+    	<h1>@@Messages("@{module.name}.item_detail",@{module.varName}.name.get)</h1>
   </div>
 	
   @@views.html.@{module.name}.list(List(@{module.varName}))

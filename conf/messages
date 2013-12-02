@@ -1,5 +1,5 @@
 
-application.name = GRATOR Crud Generator
+application.name = GATOR Crud Generator
 
 
 
@@ -14,7 +14,7 @@ test.insert = A New Test
 test.return = Return
 test.save = Save
 test.index = Test List
-test.item_detail = {0} Test details
+test.item_detail = Test {0} details
 
 
 	test.id = Id

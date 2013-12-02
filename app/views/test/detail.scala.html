@@ -1,9 +1,9 @@
 
 @(test: models.DB.Test)(implicit lang: Lang)
 
-@main(Messages("test.name")){
+@main(Messages("test.item_detail",test.name.get)){
 	<div class="page-header">
-    	<h1>@Messages("test.item_detail",test.name)</h1>
+    	<h1>@Messages("test.item_detail",test.name.get)</h1>
   </div>
 	
   @views.html.test.list(List(test))

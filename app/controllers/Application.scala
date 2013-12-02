@@ -27,7 +27,7 @@ object Application extends Controller {
   				)
 		  	)
 	    )
-	    Ok("crud generated")
+	    Ok(views.html.generate(CrudModules.crudModules))
 	 }
   }
 }

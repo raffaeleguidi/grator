@@ -1,0 +1,13 @@
+@(modules: List[models.CrudModule])
+
+@main("Welcome to GRATOR") {
+   <h2>CRUD Modules</h2>
+   <p>This is the list of the generated crud modules:</p>
+    <ul>
+    @for(module <- modules){
+          <li>
+              <a href="@{module.name.toLowerCase}">@{module.name.capitalize}</a>
+          </li>
+    }
+    </ul>
+}

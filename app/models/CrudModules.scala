@@ -7,7 +7,9 @@ import models.fields._
 
 
 object CrudModules {
+  var crudModules: List[CrudModule] = null
   def generate(appName: String, modules: List[CrudModule]): Unit = {
+    this.crudModules = modules
     for(module <- modules){
       module.generateAll
     }
